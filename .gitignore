@@ -30,7 +30,9 @@ datasets/
 test/
 
 # Training checkpoints, model weights, and exported models
+ckpt/
 checkpoints/
+smoke_ckpt/
 *_ckpt*/
 *.ckpt
 *.pth
@@ -38,6 +40,7 @@ checkpoints/
 *.onnx
 
 # Experiment outputs and logs
+output/
 outputs/
 traditional_output/
 logs/
