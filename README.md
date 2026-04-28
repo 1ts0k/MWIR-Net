@@ -239,17 +239,15 @@ python tools/evaluate_lpips.py \
 
 ## 可视化对比
 
+PPT 使用的对比图保存在 `visual_comparisons/ppt_5k_protocol/`。其中保留了 Rain100L 和 SOTS outdoor 的网格图与单样本横向对比条。
+
 Rain100L 去雨对比：
 
-![Rain100L comparison](visual_comparisons/rain100l_comparison.png)
+![Rain100L PPT comparison](visual_comparisons/ppt_5k_protocol/rain100l_ppt_grid.png)
 
 SOTS outdoor 去雾对比：
 
-![SOTS outdoor comparison](visual_comparisons/sots_outdoor_comparison.png)
-
-GT-RAIN 真实雨图像对比：
-
-![GT-RAIN comparison](visual_comparisons/gtrain_real_rain_comparison.png)
+![SOTS outdoor PPT comparison](visual_comparisons/ppt_5k_protocol/sots_outdoor_ppt_grid.png)
 
 ## 文档
 
