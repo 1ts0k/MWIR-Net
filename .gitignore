@@ -1,0 +1,62 @@
+# Python cache and build output
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and secrets
+.env
+.env.*
+.venv/
+venv/
+env/
+ENV/
+
+# IDE and system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# MWIR-Net datasets and local experiment inputs
+data/
+datasets/
+test/
+
+# Training checkpoints, model weights, and exported models
+checkpoints/
+*_ckpt*/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# Experiment outputs and logs
+outputs/
+traditional_output/
+logs/
+wandb/
+lightning_logs/
+runs/
+*.log
+
+# Large local archives, usually dataset packages
+*.zip
+*.zip.*
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Keep these project assets trackable:
+# - source code and configs
+# - docs/
+# - data_dir/ list files
+# - visual_comparisons/ selected figures
