@@ -11,11 +11,29 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, Rectangle
+from matplotlib import font_manager
 from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".bmp"}
+
+
+def configure_fonts() -> None:
+    candidates = [
+        "Noto Sans CJK SC",
+        "Noto Sans CJK JP",
+        "WenQuanYi Micro Hei",
+        "SimHei",
+        "Microsoft YaHei",
+        "DejaVu Sans",
+    ]
+    available = {font.name for font in font_manager.fontManager.ttflist}
+    for name in candidates:
+        if name in available:
+            plt.rcParams["font.sans-serif"] = [name]
+            break
+    plt.rcParams["axes.unicode_minus"] = False
 
 
 def add_box(ax, xy, width, height, label, facecolor, edgecolor="#1f2933"):
@@ -39,6 +57,7 @@ def add_arrow(ax, start, end):
 
 
 def make_architecture(output_path: Path) -> None:
+    configure_fonts()
     fig, ax = plt.subplots(figsize=(13, 5), dpi=180)
     ax.set_xlim(0, 13)
     ax.set_ylim(0, 5)
