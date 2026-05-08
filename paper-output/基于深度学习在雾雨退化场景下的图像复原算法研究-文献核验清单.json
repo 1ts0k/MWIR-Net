@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-05-08",
+  "style": "GB/T 7714-2005 school profile",
+  "count": 24,
+  "requirements": {
+    "minimum_total": 20,
+    "foreign_recent_5_years_minimum": 3,
+    "all_references_cited": true
+  },
+  "references": [
+    {
+      "id": 1,
+      "text": "[1] KOSCHMIEDER H. Theorie der horizontalen Sichtweite[J]. Beitrage zur Physik der freien Atmosphare, 1924, 12: 33-55.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 2,
+      "text": "[2] MCCARTNEY E J. Optics of the Atmosphere: Scattering by Molecules and Particles[M]. New York: John Wiley and Sons, 1976.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 3,
+      "text": "[3] HE K M, SUN J, TANG X O. Single image haze removal using dark channel prior[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2011, 33(12): 2341-2353.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 4,
+      "text": "[4] CAI B L, XU X M, JIA K, et al. DehazeNet: An end-to-end system for single image haze removal[J]. IEEE Transactions on Image Processing, 2016, 25(11): 5187-5198.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 5,
+      "text": "[5] REN W Q, LIU S, ZHANG H, et al. Single image dehazing via multi-scale convolutional neural networks[C]//European Conference on Computer Vision. Cham: Springer, 2016: 154-169.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 6,
+      "text": "[6] LI B Y, PENG X L, WANG Z Y, et al. AOD-Net: All-in-one dehazing network[C]//Proceedings of the IEEE International Conference on Computer Vision. 2017: 4780-4788.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 7,
+      "text": "[7] LI B Y, REN W Q, FU D P, et al. Benchmarking single-image dehazing and beyond[J]. IEEE Transactions on Image Processing, 2019, 28(1): 492-505.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 8,
+      "text": "[8] FU X Y, HUANG J, DING X H, et al. Clearing the skies: A deep network architecture for single-image rain removal[J]. IEEE Transactions on Image Processing, 2017, 26(6): 2944-2956.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 9,
+      "text": "[9] ZHANG H, PATEL V M. Density-aware single image de-raining using a multi-stream dense network[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2018: 695-704.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 10,
+      "text": "[10] WANG T, YANG X, XU K, et al. Spatial attentive single-image deraining with a high quality real rain dataset[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2019: 12270-12279.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 11,
+      "text": "[11] REN D W, ZUO W M, HU Q H, et al. Progressive image deraining networks: A better and simpler baseline[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2019: 3937-3946.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 12,
+      "text": "[12] ZAMIR S W, ARORA A, KHAN S, et al. Learning enriched features for real image restoration[C]//European Conference on Computer Vision. Cham: Springer, 2020: 492-511.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 13,
+      "text": "[13] ZAMIR S W, ARORA A, KHAN S, et al. Multi-stage progressive image restoration[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021: 14821-14831.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 14,
+      "text": "[14] ZAMIR S W, ARORA A, KHAN S, et al. Restormer: Efficient transformer for high-resolution image restoration[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 5728-5739.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 15,
+      "text": "[15] LI B, LIU X, HU P, et al. All-in-one image restoration for unknown corruption[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 17452-17462.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 16,
+      "text": "[16] VALANARASU J M J, YASAR E, PATEL V M. TransWeather: Transformer-based restoration of images degraded by adverse weather conditions[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 2353-2363.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 17,
+      "text": "[17] POTLAPALLI V, ZAMIR S W, KHAN S, et al. PromptIR: Prompting for all-in-one image restoration[C]//Advances in Neural Information Processing Systems. 2023, 36: 71275-71293.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 18,
+      "text": "[18] WANG Z, CUN X D, BAO J M, et al. Uformer: A general U-shaped transformer for image restoration[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 17683-17693.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 19,
+      "text": "[19] TU Z, TALAMADUPULA K, KUMAR A, et al. MAXIM: Multi-axis MLP for image processing[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 5769-5780.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 20,
+      "text": "[20] LIANG J Y, CAO J Z, SUN G L, et al. SwinIR: Image restoration using Swin Transformer[C]//Proceedings of the IEEE/CVF International Conference on Computer Vision Workshops. 2021: 1833-1844.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 21,
+      "text": "[21] WANG Z, BOVIK A C, SHEIKH H R, et al. Image quality assessment: From error visibility to structural similarity[J]. IEEE Transactions on Image Processing, 2004, 13(4): 600-612.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 22,
+      "text": "[22] ZHANG R, ISOLA P, EFROS A A, et al. The unreasonable effectiveness of deep features as a perceptual metric[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2018: 586-595.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 23,
+      "text": "[23] LOSHCHILOV I, HUTTER F. Decoupled weight decay regularization[C]//International Conference on Learning Representations. 2019.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    },
+    {
+      "id": 24,
+      "text": "[24] CHARBONNIER P, BLANC-FERAUD L, AUBERT G, et al. Two deterministic half-quadratic regularization algorithms for computed imaging[C]//Proceedings of 1st International Conference on Image Processing. 1994: 168-172.",
+      "status": "bibliographic_metadata_checked_by_common_public_records"
+    }
+  ]
+}

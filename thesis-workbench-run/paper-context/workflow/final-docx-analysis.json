@@ -1,0 +1,820 @@
+{
+  "schema_version": "1.0",
+  "parser": {
+    "name": "analyze_docx.py",
+    "version": "1.0",
+    "engine": [
+      "python-docx",
+      "zipfile",
+      "xml.etree.ElementTree"
+    ]
+  },
+  "source": {
+    "path": "MWIR-Net/thesis-workbench-run/paper-output/基于深度学习在雾雨退化场景下的图像复原算法研究.docx",
+    "source_type": "sample_docx",
+    "parser": "analyze_docx.py",
+    "parser_status": "parsed",
+    "limitations": []
+  },
+  "template_rules": {
+    "confirmed": [],
+    "needs_confirmation": []
+  },
+  "sample_patterns": {
+    "outline_structure": [
+      {
+        "level": 1,
+        "title": "第1章 绪论",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "1.1 研究背景与意义",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "1.2 国内外研究现状",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "1.3 研究内容",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "1.4 技术路线与论文结构",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 1,
+        "title": "第2章 雾雨退化机理与图像复原理论基础",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "2.1 雾退化成像模型",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "2.2 雨退化特点",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "2.3 图像复原评价指标",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "2.4 深度复原方法基础",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "2.5 本章小结",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 1,
+        "title": "第3章 MWIR-Net模型设计",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.1 总体设计目标",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.2 多尺度编码器—解码器",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.3 Transformer复原块",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.4 天气感知提示模块",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.5 损失函数与推理策略",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "3.6 本章小结",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 1,
+        "title": "第4章 数据集构建与实验实现",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.1 数据来源与划分",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.2 数据预处理与配对方式",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.3 实验环境与训练协议",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.4 推理与评价流程",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.5 可复现性与证据管理",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "4.6 本章小结",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 1,
+        "title": "第5章 实验结果与分析",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.1 Rain100L去雨结果",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.2 去雾结果分析",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.3 多数据集泛化分析",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.4 主观视觉质量分析",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.5 消融实验分析",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "5.6 结果讨论与不足",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 1,
+        "title": "第6章 结论与展望",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "6.1 研究总结",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "6.2 主要不足",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      },
+      {
+        "level": 2,
+        "title": "6.3 后续展望",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from heading-like paragraph text."
+      }
+    ],
+    "chapter_word_distribution": [
+      {
+        "chapter": "第1章 绪论",
+        "words": 3448,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      },
+      {
+        "chapter": "第2章 雾雨退化机理与图像复原理论基础",
+        "words": 2939,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      },
+      {
+        "chapter": "第3章 MWIR-Net模型设计",
+        "words": 3270,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      },
+      {
+        "chapter": "第4章 数据集构建与实验实现",
+        "words": 2975,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      },
+      {
+        "chapter": "第5章 实验结果与分析",
+        "words": 3362,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      },
+      {
+        "chapter": "第6章 结论与展望",
+        "words": 4991,
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Approximate count from visible paragraph text."
+      }
+    ],
+    "figure_table_rhythm": [
+      {
+        "pattern": "figure_caption: 图2-1 雾雨退化图像示例",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图2-1展示了去雨和去雾样例的输入与清晰目标。可以看到，雨图像中的退化主要表现为局部条纹遮挡和背景纹理干扰；雾图像则表现为全局对比度下降和远处区域空气光增强。两类退化虽然都降低了图像质量，但空间分布、频率特征和视觉损伤方式并不相同。因此，若模型只依赖固定滤波或单一尺度特征，就很难同时处理这两类任务。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表2-1 本文主要评价指标",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图3-1 MWIR-Net总体结构",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图3-2 Transformer复原块结构",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图3-2展示了Transformer复原块的基本信息流。与分类任务中的标准Transformer不同，图像复原要求输出保持像素级空间结构，因此模型不能过度破坏局部位置信息。深度卷积在QKV生成和前馈网络中引入局部归纳偏置，注意力模块则负责建模更远区域之间的关系。对于雨纹去除，这有助于判断某一线状结构是否与周围背景一致；对于去雾，这有助于利用远近区域的颜色和亮度关系恢复全局自然度。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图3-3 天气感知提示模块结构",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图3-4 TTA自集成推理流程",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图4-1 GT-RAIN真实雨图像样例",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图4-1展示了GT-RAIN中的真实雨样例。真实雨图像与合成雨图像相比，常包含更复杂的光照变化、背景运动和雨滴形态，因此指标表现通常低于标准合成数据集。本文在结果分析中不会把GT-RAIN-test低指标简单视为模型失败，而是将其作为真实场景泛化能力的边界观察。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表4-1 实验环境与工具",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表4-2 主要训练协议",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图4-2 训练损失变化曲线",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图4-2显示了部分训练日志中的loss变化。联合训练阶段的损失在训练过程中整体下降，二阶段去雾微调的损失较低且变化范围更小，说明初始化权重和任务聚焦对收敛有帮助。需要说明的是，训练loss只能反映训练集上的优化趋势，不能直接等同于测试集PSNR、SSIM或LPIPS，因此第5章仍以保存图像复算结果作为主要结论依据。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图4-3 实验训练与评价流程",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表5-1 Rain100L去雨结果对比",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-1 Rain100L PSNR指标对比",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-2 SOTS outdoor PSNR指标对比",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-2显示，传统CLAHE虽然能够提高局部对比度，但难以准确去除雾退化产生的空气光和颜色偏移；AirNet官方权重具有一定复原能力，但在本地SOTS outdoor复算口径下低于MWIR-Net；PromptIR官方权重表现较强，但仍低于本文SOTS outdoor主模型。该结果说明，在当前训练协议和测试数据下，MWIR-Net的去雾二阶段微调较好地适应了室外合成雾场景。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表5-2 MWIR-Net多数据集结果",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-3 MWIR-Net多去雨数据集PSNR结果",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-4 Rain100L去雨视觉对比",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-5给出SOTS outdoor去雾视觉对比。雾天输入图像整体偏灰、对比度不足，MWIR-Net输出在颜色和边缘方面有明显改善。与PromptIR官方输出相比，MWIR-Net在部分样例中能够得到更高对比度和更接近目标图像的亮度层次，但也需要注意，过强增强可能在真实雾图上造成颜色偏移。因此，去雾结果既要关注PSNR和SSIM，也要观察天空、远景和高亮区域是否自然。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-5 SOTS outdoor去雾视觉对比",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表5-3 Rain100L公平消融结果",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "figure_caption: 图5-6 Rain100L公平消融实验结果",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      },
+      {
+        "pattern": "table_caption: 表5-3和图5-6表明，no channel attention在PSNR和LPIPS均值上略优，zero prompt在SSIM均值上极小幅领先，但差异均小于对应标准差。这意味着当前实验不能支持“通道注意力必然带来稳定提升”的结论。更稳妥的解释是：在二阶段去雨微调、8个epoch和3个seed条件下，prompt分支和通道注意力的独立贡献尚不显著，结构模块可能需要更长训练、更多任务联合评价或与full模式3-seed结果一起分析。",
+        "source": "python-docx paragraphs",
+        "confidence": "medium",
+        "notes": "Detected from visible DOCX text; confirm against original sample."
+      }
+    ],
+    "style_observations": [
+      {
+        "observation": "abstract_heading_cn",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=黑体; size_pt=18.0; bold=True; alignment=center; sample_count=1"
+      },
+      {
+        "observation": "abstract_heading_en",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=Times New Roman; size_pt=18.0; bold=True; alignment=center; sample_count=1"
+      },
+      {
+        "observation": "ack_heading",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=黑体; size_pt=18.0; bold=True; alignment=center; sample_count=1"
+      },
+      {
+        "observation": "body_cn",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=12.0; bold=False; alignment=left; sample_count=91"
+      },
+      {
+        "observation": "body_en",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=12.0; bold=False; alignment=left; sample_count=5"
+      },
+      {
+        "observation": "figure_caption",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=12.0; bold=False; alignment=center; sample_count=22"
+      },
+      {
+        "observation": "heading1",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=黑体; size_pt=18.0; bold=True; alignment=center; sample_count=6"
+      },
+      {
+        "observation": "heading2",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=黑体; size_pt=16.0; bold=False; alignment=left; sample_count=30"
+      },
+      {
+        "observation": "keywords_cn",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=12.0; bold=False; alignment=left; sample_count=1"
+      },
+      {
+        "observation": "keywords_en",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=Times New Roman; size_pt=12.0; bold=False; alignment=left; sample_count=1"
+      },
+      {
+        "observation": "references_body",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=10.5; bold=False; alignment=left; sample_count=22"
+      },
+      {
+        "observation": "references_heading",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=黑体; size_pt=18.0; bold=True; alignment=center; sample_count=1"
+      },
+      {
+        "observation": "table_caption",
+        "source": "python-docx paragraph styles",
+        "confidence": "medium",
+        "notes": "font=宋体; size_pt=12.0; bold=False; alignment=center; sample_count=7"
+      },
+      {
+        "observation": "header_footer_text",
+        "source": "word/header1.xml",
+        "confidence": "high",
+        "notes": "武汉理工大学本科毕业设计（论文）"
+      },
+      {
+        "observation": "section_properties",
+        "source": "word/document.xml sectPr[1]",
+        "confidence": "high",
+        "notes": "page_size width=12240 height=15840; margins top=1417 right=1134 bottom=1134 left=1417"
+      },
+      {
+        "observation": "style_definitions",
+        "source": "word/styles.xml",
+        "confidence": "high",
+        "notes": "style_count=164; headings=heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, heading 7, heading 8"
+      },
+      {
+        "observation": "numbering_definitions",
+        "source": "word/numbering.xml",
+        "confidence": "high",
+        "notes": "abstract_numbering=9; numbering_instances=9"
+      }
+    ]
+  },
+  "page_setup": {
+    "page_width_twips": 12240,
+    "page_height_twips": 15840,
+    "margin_top_twips": 1417,
+    "margin_right_twips": 1134,
+    "margin_bottom_twips": 1134,
+    "margin_left_twips": 1417
+  },
+  "recommendations": {
+    "outline_suggestion": [],
+    "word_budget": [],
+    "user_decisions_needed": []
+  },
+  "confidence": {
+    "structure": "low",
+    "word_count": "low",
+    "style": "medium"
+  },
+  "source_file": "MWIR-Net/thesis-workbench-run/paper-output/基于深度学习在雾雨退化场景下的图像复原算法研究.docx",
+  "styles": {
+    "body_cn": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": 24.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 3.0,
+      "space_after_pt": 3.0,
+      "page_break_before": true,
+      "sample_count": 91
+    },
+    "abstract_heading_cn": {
+      "font": "黑体",
+      "east_asia_font": "黑体",
+      "latin_font": "Times New Roman",
+      "size_pt": 18.0,
+      "bold": true,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": true,
+      "sample_count": 1
+    },
+    "keywords_cn": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "page_break_before": null,
+      "sample_count": 1
+    },
+    "abstract_heading_en": {
+      "font": "Times New Roman",
+      "east_asia_font": "Times New Roman",
+      "latin_font": "Times New Roman",
+      "size_pt": 18.0,
+      "bold": true,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": true,
+      "sample_count": 1
+    },
+    "body_en": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": 24.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "page_break_before": null,
+      "sample_count": 5
+    },
+    "keywords_en": {
+      "font": "Times New Roman",
+      "east_asia_font": "Times New Roman",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "page_break_before": null,
+      "sample_count": 1
+    },
+    "heading1": {
+      "font": "黑体",
+      "east_asia_font": "黑体",
+      "latin_font": "Times New Roman",
+      "size_pt": 18.0,
+      "bold": true,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": true,
+      "sample_count": 6
+    },
+    "heading2": {
+      "font": "黑体",
+      "east_asia_font": "黑体",
+      "latin_font": "Times New Roman",
+      "size_pt": 16.0,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": null,
+      "sample_count": 30
+    },
+    "figure_caption": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 3.0,
+      "space_after_pt": 3.0,
+      "page_break_before": null,
+      "sample_count": 22
+    },
+    "table_caption": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 12.0,
+      "bold": false,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 3.0,
+      "space_after_pt": 3.0,
+      "page_break_before": null,
+      "sample_count": 7
+    },
+    "references_heading": {
+      "font": "黑体",
+      "east_asia_font": "黑体",
+      "latin_font": "Times New Roman",
+      "size_pt": 18.0,
+      "bold": true,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": true,
+      "sample_count": 1
+    },
+    "references_body": {
+      "font": "宋体",
+      "east_asia_font": "宋体",
+      "latin_font": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "alignment": "left",
+      "first_line_indent_pt": -21.0,
+      "left_indent_pt": 21.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "page_break_before": null,
+      "sample_count": 22
+    },
+    "ack_heading": {
+      "font": "黑体",
+      "east_asia_font": "黑体",
+      "latin_font": "Times New Roman",
+      "size_pt": 18.0,
+      "bold": true,
+      "alignment": "center",
+      "first_line_indent_pt": 0.0,
+      "left_indent_pt": 0.0,
+      "line_spacing": 254000.0,
+      "line_spacing_rule": "exactly",
+      "space_before_pt": 6.0,
+      "space_after_pt": 6.0,
+      "page_break_before": true,
+      "sample_count": 1
+    }
+  }
+}

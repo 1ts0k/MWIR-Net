@@ -1,0 +1,16 @@
+{
+  "图2-1 雾雨退化图像示例": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-2-1-degradation-examples.png",
+  "图3-1 MWIR-Net总体结构": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-3-1-mwirnet-architecture.png",
+  "图3-2 Transformer复原块结构": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-3-2-transformer-block.png",
+  "图3-3 天气感知提示模块结构": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-3-3-prompt-module.png",
+  "图3-4 TTA自集成推理流程": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-3-4-tta-workflow.png",
+  "图4-1 GT-RAIN真实雨图像样例": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-4-2-gtrain-examples.png",
+  "图4-2 训练损失变化曲线": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-4-3-training-loss.png",
+  "图4-3 实验训练与评价流程": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-4-1-experiment-workflow.png",
+  "图5-1 Rain100L PSNR指标对比": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-3-rain100l-psnr.png",
+  "图5-2 SOTS outdoor PSNR指标对比": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-4-sots-psnr.png",
+  "图5-3 MWIR-Net多去雨数据集PSNR结果": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-5-derain-multisplit.png",
+  "图5-4 Rain100L去雨视觉对比": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-1-rain-visual.png",
+  "图5-5 SOTS outdoor去雾视觉对比": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-2-haze-visual.png",
+  "图5-6 Rain100L公平消融实验结果": "/root/autodl-tmp/MWIR-Net/thesis-workbench-run/paper-output/figures/figure-5-6-ablation.png"
+}

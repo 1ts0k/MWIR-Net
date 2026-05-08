@@ -1,0 +1,1904 @@
+{
+  "schema_version": "1.0",
+  "source": "/root/autodl-tmp/MWIR-Net/paper-output/基于深度学习在雾雨退化场景下的图像复原算法研究.md",
+  "summary": {
+    "overall_risk": "low",
+    "paragraph_count": 208,
+    "risk_counts": {
+      "clear": 205,
+      "low": 3,
+      "medium": 0,
+      "high": 0
+    },
+    "pattern_counts": {
+      "rigid_sequence": 3
+    },
+    "hard_failures": []
+  },
+  "findings": [
+    {
+      "paragraph": 1,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "# 基于深度学习在雾雨退化场景下的图像复原算法研究"
+    },
+    {
+      "paragraph": 2,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 摘 要"
+    },
+    {
+      "paragraph": 3,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雾、雨天气会削弱图像对比度，遮挡局部纹理，并引起颜色偏移。此类退化会影响目标检测、交通感知和场景理解等视觉任务的稳定性。围绕雾雨退化场景下的图像复原问题，本课题设计并实现了 MWIR-Net 多尺度天气感知图像复原网络。该网络以 Trans"
+    },
+    {
+      "paragraph": 4,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "关键词：图像复原；去雨；去雾；Transformer；MWIR-Net"
+    },
+    {
+      "paragraph": 5,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## Abstract"
+    },
+    {
+      "paragraph": 6,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Images captured in foggy or rainy weather often suffer from contrast reduction, texture occlusion and color distortion. "
+    },
+    {
+      "paragraph": 7,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Keywords: image restoration; image deraining; image dehazing; Transformer; MWIR-Net"
+    },
+    {
+      "paragraph": 8,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第1章 绪论"
+    },
+    {
+      "paragraph": 9,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 1.1 研究背景与目的"
+    },
+    {
+      "paragraph": 10,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "户外视觉系统通常建立在清晰图像输入之上。道路监控、无人车感知、视频巡检和移动机器人导航都需要稳定的场景纹理、边缘和颜色信息。雾和雨会改变光线传播过程，雾粒子引起散射和透射衰减，雨纹和雨滴会遮挡局部结构。图像质量下降后，后续算法容易出现误检、"
+    },
+    {
+      "paragraph": 11,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雾退化通常由大气散射过程描述。Koschmieder 建立了能见度与大气衰减之间的关系[1]，McCartney 从光学散射角度讨论了气溶胶和颗粒物对成像过程的影响[2]。在数字图像中，雾会造成远处区域亮度抬升、对比度降低和颜色趋同。雨退化"
+    },
+    {
+      "paragraph": 12,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "传统图像复原方法依赖物理模型或人工先验。暗通道先验在单幅图像去雾中具有代表性[3]，但先验假设在天空、大面积白色物体和夜间光照下容易失效。基于滤波或稀疏表示的去雨方法可以处理规则雨纹，对真实雨场景和复杂纹理的区分能力较弱。深度学习方法把退化"
+    },
+    {
+      "paragraph": 13,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本课题的目的在于设计一种面向雾雨退化的深度图像复原算法，并在本地工作区中形成完整的实验链路。研究对象不是单一退化场景，而是去雨和去雾两类任务的联合建模。论文围绕 MWIR-Net 展开，分析雾雨退化机理，构建训练和测试数据，设计多尺度天气感"
+    },
+    {
+      "paragraph": 14,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从工程应用看，雾雨复原模型需要在图像细节、颜色一致性和泛化能力之间取得平衡。单纯追求像素误差可能得到平滑结果，过度强调感知效果又可能改变真实结构。本课题将 PSNR、SSIM 与 LPIPS 结合使用，既考察像素级重建，也观察结构相似性和感"
+    },
+    {
+      "paragraph": 15,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雾雨图像复原与普通图像增强不同。增强方法主要改变亮度、对比度或颜色分布，目标是让图像更适合人眼观察；复原方法需要尽量逼近退化前的真实场景，目标是恢复被退化破坏的结构和纹理。若把去雾问题简单看成对比度增强，远处景物虽然会变得更清晰，但颜色容易"
+    },
+    {
+      "paragraph": 16,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本课题选择 MWIR-Net 作为研究对象，还与毕业设计的可实现性有关。相比直接训练规模很大的统一复原模型，MWIR-Net 的代码结构较清晰，训练入口、测试入口和指标复算脚本都已经在本地形成闭环。模型既包含 Transformer 复原块"
+    },
+    {
+      "paragraph": 17,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 1.2 国内外研究现状"
+    },
+    {
+      "paragraph": 18,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "单图去雾研究早期主要依赖图像先验和物理成像模型。He 等提出的暗通道先验利用无雾图像局部暗像素统计估计透射率，在自然图像上取得了较好的复原效果[3]。该方法不需要成对训练数据，具有较强解释性，但先验对特定场景较敏感。进入深度学习阶段后，Ca"
+    },
+    {
+      "paragraph": 19,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "单图去雨研究同样经历了从手工先验到深度网络的转变。Fu 等提出深度细节网络，把雨纹残差作为学习目标，减轻背景纹理被误删的问题[8]。Zhang 和 Patel 通过密度感知多流网络处理不同雨强图像[9]。Wang 等构建真实雨数据集并引入空"
+    },
+    {
+      "paragraph": 20,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "近年来，统一图像复原成为一个重要方向。MIRNet 利用多尺度特征和选择性核融合增强真实图像复原能力[12]。MPRNet 采用多阶段渐进结构，在去雨、去模糊和去噪任务中表现较好[13]。Restormer 把高效 Transformer "
+    },
+    {
+      "paragraph": 21,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Transformer 结构在图像复原中的使用也越来越广。Uformer 使用 U 形结构和窗口注意力处理高分辨率图像[18]，MAXIM 通过多轴 MLP 建模空间交互[19]，SwinIR 将 Swin Transformer 用于超分"
+    },
+    {
+      "paragraph": 22,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "现有研究仍有几个不足。单任务模型在特定数据集上可以取得高指标，但退化类型变化后复用性不足。统一复原模型虽然改善了泛化能力，训练过程和任务提示设计却更复杂。公开预训练权重往往依赖大规模数据和长时间训练，本科毕业设计条件下很难完全复现其训练规模"
+    },
+    {
+      "paragraph": 23,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从数据集角度看，去雾和去雨研究也面临合成数据与真实数据差异的问题。去雾数据常依赖深度图和大气散射模型生成，雾浓度、光照和大气光由人工参数控制。去雨数据常用清晰图叠加雨纹得到，雨纹形态与真实相机拍摄的雨滴、反射和运动模糊并不完全一致。真实雨数"
+    },
+    {
+      "paragraph": 24,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "评价指标的使用也需要谨慎。PSNR 对像素误差敏感，常用于合成数据集上比较模型，但高 PSNR 不一定代表主观观感最好。SSIM 更关注结构一致性，适合观察边缘和纹理是否保留。LPIPS 基于深度特征，能在一定程度上反映感知差异，但它本身也"
+    },
+    {
+      "paragraph": 25,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 1.3 研究内容"
+    },
+    {
+      "paragraph": 26,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本课题围绕雾雨退化图像复原展开，研究内容贯穿退化机理、数据链路、模型设计和实验评价。论文分析雾和雨的成像退化特点，整理去雾、去雨和统一图像复原领域的代表方法，明确 MWIR-Net 的结构设计依据。数据部分使用 RAIN13K、RESIDE"
+    },
+    {
+      "paragraph": 27,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "论文的预期目标是形成一套可复现实验流程，而不是只给出单次测试分数。训练口径、初始化方式、损失设置、推理方式和指标复算方法均在文中说明。对于公开预训练模型表现更强的实验结果，论文保持客观表述，不把 MWIR-Net 描述为所有数据集上的最优方"
+    },
+    {
+      "paragraph": 28,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 1.4 论文结构安排"
+    },
+    {
+      "paragraph": 29,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "第1章说明研究背景、国内外研究现状、研究内容和论文组织。第2章介绍雾雨退化模型、图像复原评价指标、Transformer 复原结构和实验环境。第3章给出 MWIR-Net 的总体设计，重点说明多尺度编码解码、天气感知 prompt、损失函数"
+    },
+    {
+      "paragraph": 30,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第2章 理论基础与相关技术"
+    },
+    {
+      "paragraph": 31,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 2.1 雾雨图像退化机理"
+    },
+    {
+      "paragraph": 32,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雾图像退化可由大气散射模型描述。设观测图像为 I(x)，无雾图像为 J(x)，大气光为 A，透射率为 t(x)，像素位置为 x，则常用模型可以写成式（2-1）。其中第一项表示场景辐射经过介质衰减后到达相机，第二项表示大气光散射带来的亮度叠加"
+    },
+    {
+      "paragraph": 33,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ I(x)=J(x)t(x)+A(1-t(x)) \\qquad （2-1） $$"
+    },
+    {
+      "paragraph": 34,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "透射率通常与场景深度 d(x) 和散射系数 beta 有关，可写成式（2-2）。深度越大或散射越强，透射率越低，图像中的远处区域越容易出现灰白化和细节丢失。真实场景中大气光并不总是均匀，雾浓度也会随空间位置变化，因此基于简单物理模型的去雾方"
+    },
+    {
+      "paragraph": 35,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ t(x)=e^{-\\beta d(x)} \\qquad （2-2） $$"
+    },
+    {
+      "paragraph": 36,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雨退化没有完全统一的单一模型。对于雨纹场景，观测图像常被看成背景图像与雨层叠加，雨层具有方向性、稀疏性和亮度突变特征。对于真实雨图像，雨滴附着、运动模糊、光照反射和相机曝光会共同影响成像过程。雨纹与建筑线条、树枝和道路标线在局部形态上可能相"
+    },
+    {
+      "paragraph": 37,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "雾和雨对图像的破坏方式不同，模型处理时也应关注不同特征。雾主要影响全局亮度和低频对比度，远处区域的纹理逐渐消失，图像中会出现深度相关的灰白遮罩。雨纹更偏向局部高频扰动，方向性和长度变化较明显，有时会覆盖细小边缘。若模型只依赖局部卷积，去雾时"
+    },
+    {
+      "paragraph": 38,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图2-1 雾雨退化图像示例](figures/figure-2-1-degradation-examples.png)"
+    },
+    {
+      "paragraph": 39,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图2-1 雾雨退化图像示例"
+    },
+    {
+      "paragraph": 40,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图2-1给出了本地数据中的雨图和雾图示例。雨退化主要表现为局部条纹和亮度扰动，雾退化则体现为全局对比度下降。两类退化的空间分布不同，但都会破坏边缘和纹理。MWIR-Net 将二者放入统一复原框架中处理，这是因为两类任务都需要恢复清晰结构，同"
+    },
+    {
+      "paragraph": 41,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 2.2 图像复原评价指标"
+    },
+    {
+      "paragraph": 42,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "实验评价采用 PSNR、SSIM 和 LPIPS 三类指标。PSNR 基于均方误差计算，常用于衡量像素级复原精度。设清晰图像为 Y，复原图像为 X，图像像素最大值为 MAX，则 PSNR 定义为式（2-3）。PSNR 越高，说明复原图像与目"
+    },
+    {
+      "paragraph": 43,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ PSNR=10\\log_{10}\\frac{MAX^2}{MSE(X,Y)} \\qquad （2-3） $$"
+    },
+    {
+      "paragraph": 44,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "SSIM 从亮度、对比度和结构三个方面评价图像相似性[21]。与 PSNR 相比，SSIM 对结构变化更敏感，适合观察复原结果是否保持边缘和纹理。LPIPS 使用深度特征空间中的距离衡量感知差异[22]，数值越低代表感知距离越小。本文采用三"
+    },
+    {
+      "paragraph": 45,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表2-1 评价指标说明"
+    },
+    {
+      "paragraph": 46,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 指标 | 含义 | 数值方向 | 本文用途 | | --- | --- | --- | --- | | PSNR | 峰值信噪比 | 越高越好 | 衡量像素级误差 | | SSIM | 结构相似性 | 越高越好 | 衡量结构保持程度 |"
+    },
+    {
+      "paragraph": 47,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "实际复算指标时还需要处理图像尺寸和文件匹配问题。不同模型输出图像可能存在轻微尺寸差异，若直接计算指标，会把边界裁剪差异也计入误差。本文统一采用共同尺寸中心裁剪，并进一步裁剪到 16 的整数倍。该处理方式与网络下采样和上采样尺度一致，可以减少"
+    },
+    {
+      "paragraph": 48,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "PSNR、SSIM 和 LPIPS 的方向不同。PSNR 和 SSIM 越高越好，LPIPS 越低越好。论文表格中同时给出三项指标，读者可以判断模型是否存在像素指标高但感知质量差的情况。比如某些模型可能通过平滑减少像素误差，却让图像纹理变弱"
+    },
+    {
+      "paragraph": 49,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 2.3 Transformer图像复原基础"
+    },
+    {
+      "paragraph": 50,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "卷积神经网络擅长提取局部纹理，但卷积核感受野有限。雾雨退化中的长距离相关性较强，例如雨纹方向可能跨越较大区域，雾浓度变化也与场景深度有关。Transformer 的注意力机制可以在更大范围内建立特征联系。Restormer 等方法证明，经过"
+    },
+    {
+      "paragraph": 51,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "标准自注意力需要计算空间 token 之间的相关性，高分辨率图像会带来较大计算量。MWIR-Net 采用 Multi-DConv Head Transposed Self-Attention 思路，在通道维度计算注意力，并使用深度卷积增强局"
+    },
+    {
+      "paragraph": 52,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ Attention(Q,K,V)=Softmax(QK^T/temperature)V \\qquad （2-4） $$"
+    },
+    {
+      "paragraph": 53,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "前馈网络采用门控深度卷积结构。输入特征先经 1×1 卷积扩展通道，再通过 3×3 深度卷积提取局部信息，随后使用 GELU 门控得到输出。该结构兼顾通道混合与局部空间建模，适合图像复原中的细节恢复。"
+    },
+    {
+      "paragraph": 54,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 2.4 实验环境与工具"
+    },
+    {
+      "paragraph": 55,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本项目使用 PyTorch 和 Lightning 构建训练流程，模型文件位于 net/mwirnet.py，训练入口为 train.py，测试入口为 test.py。数据准备脚本 tools/prepare_mwir_data.py 负责"
+    },
+    {
+      "paragraph": 56,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表2-2 实验环境与工具"
+    },
+    {
+      "paragraph": 57,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 类别 | 配置或工具 | 说明 | | --- | --- | --- | | 深度学习框架 | PyTorch、Lightning | 模型训练与 checkpoint 管理 | | 图像处理 | Pillow、scikit-imag"
+    },
+    {
+      "paragraph": 58,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 2.5 本章小结"
+    },
+    {
+      "paragraph": 59,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本章从雾雨退化机理出发，说明了雾图像的大气散射模型和雨图像的层叠退化特点，并给出了 PSNR、SSIM 和 LPIPS 三类评价指标。结合 Transformer 图像复原的发展，本章分析了 MWIR-Net 采用多尺度 Transform"
+    },
+    {
+      "paragraph": 60,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第3章 MWIR-Net模型设计"
+    },
+    {
+      "paragraph": 61,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.1 总体结构"
+    },
+    {
+      "paragraph": 62,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "MWIR-Net 的全称为 Multi-scale Weather-aware Image Restoration Network，面向去雨和去雾两类任务。模型输入为三通道退化图像，输出为同尺寸清晰图像。整体结构采用编码器和解码器形式，编码"
+    },
+    {
+      "paragraph": 63,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图3-1 MWIR-Net总体结构](figures/figure-3-1-mwirnet-architecture.png)"
+    },
+    {
+      "paragraph": 64,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图3-1 MWIR-Net总体结构"
+    },
+    {
+      "paragraph": 65,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "如图3-1所示，输入图像先经过重叠 patch 嵌入层得到浅层特征。编码器包含四个尺度，前三个尺度通过 Downsample 模块逐步下采样，第四个尺度作为 latent 特征。解码器使用 Upsample 模块恢复空间尺度，在每个尺度上融"
+    },
+    {
+      "paragraph": 66,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "编码器和解码器的多尺度设计有两个作用。较高分辨率层保留边缘、纹理和颜色细节，较低分辨率层扩大感受野，帮助模型理解更大范围的雾层分布和雨纹方向。编码端的跳跃连接把浅层结构信息传给解码端，避免图像在多次下采样后丢失细节。解码端在融合编码特征后再"
+    },
+    {
+      "paragraph": 67,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "模型输出采用残差学习形式，即网络预测的是输入图像需要调整的部分，最终输出为预测结果与输入相加。低层视觉复原任务中，大部分场景结构本来就存在于输入图像，退化主要表现为雾层覆盖、雨纹遮挡和颜色偏移。残差输出可以让网络更集中地学习退化成分和细节补"
+    },
+    {
+      "paragraph": 68,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.2 多尺度Transformer复原块"
+    },
+    {
+      "paragraph": 69,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "MWIR-Net 的基本复原单元由 LayerNorm、MDTA 注意力模块和 GDFN 前馈网络组成。每个子模块都采用残差连接，使特征在深层传递时保持稳定。LayerNorm 作用于展平后的空间 token，再恢复为四维特征。MDTA 使"
+    },
+    {
+      "paragraph": 70,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图3-2 Transformer复原块结构](figures/figure-3-2-transformer-block.png)"
+    },
+    {
+      "paragraph": 71,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图3-2 Transformer复原块结构"
+    },
+    {
+      "paragraph": 72,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图3-2展示了复原块内部的数据流。输入特征经过归一化后进入注意力分支，输出与输入相加；随后再次归一化并进入前馈分支，得到最终特征。该设计使模型同时具备局部纹理建模和较大范围特征交互能力。对于雨纹任务，注意力可以捕捉方向性退化；对于去雾任务，"
+    },
+    {
+      "paragraph": 73,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.3 天气感知提示模块"
+    },
+    {
+      "paragraph": 74,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "去雨和去雾虽然都属于图像复原任务，但退化形式不同。若网络只依赖普通编码特征，容易把不同退化混合处理。MWIR-Net 在解码阶段加入 WeatherPromptBlock，为不同尺度提供可学习天气先验。该模块保存一个 prompt 参数库，"
+    },
+    {
+      "paragraph": 75,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图3-3 天气感知提示模块结构](figures/figure-3-3-prompt-module.png)"
+    },
+    {
+      "paragraph": 76,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图3-3 天气感知提示模块结构"
+    },
+    {
+      "paragraph": 77,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "如图3-3所示，prompt 特征经过双线性插值调整到当前特征尺寸，再通过 3×3 卷积和通道注意力处理。通道注意力使用全局池化和两层 1×1 卷积生成通道权重，用于强调与当前退化相关的特征响应。代码中提供 full、zero_prompt"
+    },
+    {
+      "paragraph": 78,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "prompt 模块的设计思路是把退化信息显式注入解码过程。编码器已经提取了图像内容特征，但这些特征并不会天然区分雨纹、雾层和背景纹理。可学习 prompt 参数库相当于保存若干退化先验，线性层根据当前特征生成权重，得到输入相关的先验组合。该"
+    },
+    {
+      "paragraph": 79,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "通道注意力并不改变 prompt 的空间尺寸，而是调整不同通道的重要性。对于雾图像，低频亮度和颜色恢复相关通道可能更重要；对于雨图像，边缘和方向纹理相关通道可能更重要。通道注意力的目标是让 prompt 分支根据输入内容选择不同响应。不过第"
+    },
+    {
+      "paragraph": 80,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.4 损失函数与优化策略"
+    },
+    {
+      "paragraph": 81,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "训练阶段使用像素重建损失和边缘一致性损失。像素损失可选择 L1 或 Charbonnier 损失。Charbonnier 损失是 L1 损失的平滑形式，常用于图像复原任务[24]。设复原图像为 X，目标图像为 Y，epsilon 为平滑项，"
+    },
+    {
+      "paragraph": 82,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ L_{char}=\\frac{1}{N}\\sum_i\\sqrt{(X_i-Y_i)^2+\\epsilon^2} \\qquad （3-1） $$"
+    },
+    {
+      "paragraph": 83,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "边缘一致性损失使用 Sobel 算子分别计算复原图像和目标图像的水平、垂直梯度，再计算 L1 距离。总损失如式（3-2）所示，其中 lambda 控制边缘损失权重。主训练阶段使用 L1 加 0.05 Sobel 边缘一致性，二阶段微调使用 "
+    },
+    {
+      "paragraph": 84,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "$$ L=L_{pixel}+\\lambda L_{edge} \\qquad （3-2） $$"
+    },
+    {
+      "paragraph": 85,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "优化器采用 AdamW，初始学习率在联合训练阶段设为 2e-4，在二阶段微调阶段设为 1e-5。学习率调度使用线性 warmup 和 cosine annealing。该设置可以在训练初期减少梯度震荡，在后期逐步降低学习率以细化复原结果。"
+    },
+    {
+      "paragraph": 86,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.5 自集成推理"
+    },
+    {
+      "paragraph": 87,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "推理阶段提供常规推理和 TTA 自集成两种方式。TTA 使用 4 个旋转角度及其水平翻转结果，共 8 路增强。每一路增强图像经过同一模型复原后，再逆变换回原方向并求平均。该方法不改变模型参数，代价是推理时间增加。实验中 Rain100L 和"
+    },
+    {
+      "paragraph": 88,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图3-4 自集成推理流程](figures/figure-3-4-tta-workflow.png)"
+    },
+    {
+      "paragraph": 89,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图3-4 自集成推理流程"
+    },
+    {
+      "paragraph": 90,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 3.6 本章小结"
+    },
+    {
+      "paragraph": 91,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本章提出了 MWIR-Net 的网络结构。模型以多尺度 Transformer 编码解码为主体，在解码阶段引入天气感知 prompt，并使用通道注意力调节提示特征。损失函数结合像素重建和边缘一致性，推理阶段提供 TTA 自集成。该设计直接对"
+    },
+    {
+      "paragraph": 92,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第4章 算法实现与实验设计"
+    },
+    {
+      "paragraph": 93,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 4.1 项目结构与数据准备"
+    },
+    {
+      "paragraph": 94,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "MWIR-Net 项目目录包含模型、训练、测试、工具脚本和文档材料。net/mwirnet.py 实现网络结构，train.py 负责训练过程，test.py 负责去雨、去雾和多任务测试。utils/dataset_utils.py 处理训"
+    },
+    {
+      "paragraph": 95,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "训练脚本使用 LightningModule 封装网络、损失函数和优化器。训练步骤从数据集中读取退化图像和清晰图像，网络输出复原图像后计算像素损失和边缘损失。SobelEdgeLoss 在灰度图上计算水平和垂直梯度，再比较复原图与目标图的梯"
+    },
+    {
+      "paragraph": 96,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "测试脚本把去雨和去雾任务统一到 DerainDehazeDataset 中。去雨任务直接按 input 和 target 同名文件匹配，去雾任务按输入文件名前缀匹配清晰目标图。若退化图与清晰图尺寸不同，脚本会按共同尺寸中心裁剪。TTA 推理"
+    },
+    {
+      "paragraph": 97,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "去雨训练数据来自 RAIN13K，脚本将 rainy 与 gt 目录组织到 data/Train/Derain，并写入 data_dir/rainy/rainTrain.txt。去雾训练数据来自 RESIDE/OTS 或 ITS，当前主要实"
+    },
+    {
+      "paragraph": 98,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图4-1 数据准备与实验流程](figures/figure-4-1-experiment-workflow.png)"
+    },
+    {
+      "paragraph": 99,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图4-1 数据准备与实验流程"
+    },
+    {
+      "paragraph": 100,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图4-1给出了本地实验流程。数据准备后，训练脚本从列表文件读取退化图像和清晰图像，随机裁剪 128×128 patch 并进行数据增强。训练结束后，测试脚本输出复原图像。为了保证不同方法之间可比，指标汇总文档中的 PSNR、SSIM 和 L"
+    },
+    {
+      "paragraph": 101,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 4.2 数据集说明"
+    },
+    {
+      "paragraph": 102,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "RAIN13K 提供大规模合成雨纹训练样本，Rain100L 和 Rain100H 适合评价不同雨强条件下的去雨效果。Test100、Test1200 和 Test2800 可用于观察模型在更多合成测试图像上的表现。SOTS outdoor"
+    },
+    {
+      "paragraph": 103,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本地数据组织采用软链接方式，避免复制大规模图像文件。prepare_mwir_data.py 根据数据集目录生成 data/Train 和 test 下的训练、测试结构，并更新 data_dir 中的列表文件。训练阶段读取的是列表路径，测试"
+    },
+    {
+      "paragraph": 104,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5k 协议是本文实验中的重要口径。该协议从去雨和去雾训练样本中各取最多 5000 张，既控制训练成本，也让不同模型在相近数据规模下比较。若使用单任务二阶段微调，则只启用对应任务的样本上限。由于训练数据量低于公开强模型的大规模训练条件，论文对"
+    },
+    {
+      "paragraph": 105,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图4-2 GT-RAIN真实雨图像示例](figures/figure-4-2-gtrain-examples.png)"
+    },
+    {
+      "paragraph": 106,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图4-2 GT-RAIN真实雨图像示例"
+    },
+    {
+      "paragraph": 107,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表4-1 训练与测试数据集"
+    },
+    {
+      "paragraph": 108,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 任务 | 数据集 | 用途 | 图像数量或说明 | | --- | --- | --- | --- | | 去雨 | RAIN13K | 训练 | 训练样本，5k 协议取最多 5000 张 | | 去雨 | Rain100L | 测试 "
+    },
+    {
+      "paragraph": 109,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 4.3 训练设置"
+    },
+    {
+      "paragraph": 110,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "训练分为联合训练和二阶段微调。联合训练使用去雨与去雾样本各最多 5000 张，训练 12 epoch，batch size 为 32，patch size 为 128，学习率为 2e-4，warmup epoch 为 2。该阶段用于得到同时"
+    },
+    {
+      "paragraph": 111,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表4-2 主要训练协议"
+    },
+    {
+      "paragraph": 112,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 阶段 | 任务 | 初始化 | 训练参数 | 损失设置 | | --- | --- | --- | --- | --- | | MWIR-Net-5k_12epoch | 去雨+去雾 | 随机初始化 | 12 epoch，batch 3"
+    },
+    {
+      "paragraph": 113,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图4-3 训练损失变化曲线](figures/figure-4-3-training-loss.png)"
+    },
+    {
+      "paragraph": 114,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图4-3 训练损失变化曲线"
+    },
+    {
+      "paragraph": 115,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图4-3展示了训练日志中的 loss 变化。由于不同 version 对应的实验阶段不同，训练 loss 只用于观察优化过程，不能直接等同于测试集指标。最终实验分析以保存图像统一复算的 PSNR、SSIM 和 LPIPS 为准。"
+    },
+    {
+      "paragraph": 116,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 4.4 评价口径与复现方式"
+    },
+    {
+      "paragraph": 117,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "常规推理使用 test.py，去雨模式读取 test/derain 下的 split，去雾模式读取 test/dehaze 下的 split。TTA 推理通过 --tta 参数开启。复算指标时，预测图和目标图按共同尺寸做中心裁剪，并裁剪到 "
+    },
+    {
+      "paragraph": 118,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "为了减少实验记录混乱，本文采用输出目录命名区分训练和推理来源。例如 mwirnet_output_stage2_charb_edge002 表示二阶段 Charbonnier 加 0.02 边缘损失的去雨输出，带 tta 的目录表示开启自集"
+    },
+    {
+      "paragraph": 119,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "复现实验时应优先检查三个文件。options.py 记录训练参数入口，train.py 记录损失函数、优化器和 checkpoint 策略，test.py 记录推理模式和 TTA 流程。指标复算脚本负责把保存图像转为统一指标。若只查看训练日"
+    },
+    {
+      "paragraph": 120,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "实验可信度还取决于目录和文件记录是否完整。本文保留 checkpoint 目录、输出图像目录、训练日志目录和指标汇总文档之间的对应关系。训练日志只记录优化过程，输出图像用于主指标复算，指标汇总文档负责把不同模型、不同数据集和不同推理策略放到"
+    },
+    {
+      "paragraph": 121,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图表制作也遵循同一原则。模型结构图来自 net/mwirnet.py 的模块关系，实验流程图来自本地脚本调用顺序，视觉对比图直接读取 test 和 outputs 目录中的输入、目标和复原图像。量化柱状图来自 docs/所有模型指标汇总.m"
+    },
+    {
+      "paragraph": 122,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表4-3 指标复算口径"
+    },
+    {
+      "paragraph": 123,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 项目 | 口径 | | --- | --- | | PSNR/SSIM | 保存图像复算，预测图与目标图共同尺寸中心裁剪 | | LPIPS | alex backbone，数值越低越好 | | 去雨匹配 | 优先同名匹配，不同后缀按 "
+    },
+    {
+      "paragraph": 124,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 4.5 本章小结"
+    },
+    {
+      "paragraph": 125,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本章介绍了 MWIR-Net 的项目实现、数据准备、训练协议和评价口径。代码结构覆盖模型、训练、测试、数据集、指标复算和可视化脚本。实验采用 5k 联合训练和二阶段微调方案，并以保存图像统一复算结果作为论文分析依据。第5章将在该口径下比较去"
+    },
+    {
+      "paragraph": 126,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第5章 实验结果与分析"
+    },
+    {
+      "paragraph": 127,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 5.1 去雨实验结果"
+    },
+    {
+      "paragraph": 128,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Rain100L 是常用轻量级去雨测试集，公开预训练模型在该数据集上仍具有明显优势。统一复算结果显示，Restormer-official 的 PSNR 为 37.57 dB，PromptIR-official 的 SSIM 为 0.977"
+    },
+    {
+      "paragraph": 129,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表5-1 Rain100L主要方法结果"
+    },
+    {
+      "paragraph": 130,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 模型 | 图像数 | PSNR | SSIM | LPIPS | | --- | --- | --- | --- | --- | | Restormer-official | 100 | 37.57 | 0.9741 | 0.04238"
+    },
+    {
+      "paragraph": 131,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-1 Rain100L去雨视觉对比](figures/figure-5-1-rain-visual.png)"
+    },
+    {
+      "paragraph": 132,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-1 Rain100L去雨视觉对比"
+    },
+    {
+      "paragraph": 133,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-3 Rain100L主要方法PSNR对比](figures/figure-5-3-rain100l-psnr.png)"
+    },
+    {
+      "paragraph": 134,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-3 Rain100L主要方法PSNR对比"
+    },
+    {
+      "paragraph": 135,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-1和图5-3反映了轻雨场景下不同模型的差异。官方预训练模型在细节保持和纹理干净程度上更强，MWIR-Net 的 TTA 结果能够去除大部分雨纹，但部分高频细节仍有轻微平滑。该现象与训练规模有关，也与模型当前的 prompt 分支设计有"
+    },
+    {
+      "paragraph": 136,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "与中值滤波和从零训练模型相比，MWIR-Net 的二阶段结果提升明显。中值滤波不需要训练，但它将雨纹和细小纹理都视为局部异常，容易造成图像整体模糊。MWIR-Net-5k_12epoch 从零训练时 PSNR 只有 25.07 dB，说明有"
+    },
+    {
+      "paragraph": 137,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Rain100H 的结果低于 Rain100L，这是因为 Rain100H 的雨纹更密集，背景遮挡更严重。Test1200 和 Test2800 的 PSNR 较高，说明模型在部分合成雨数据上有较好的适配能力。GT-RAIN-test 的 "
+    },
+    {
+      "paragraph": 138,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在其他去雨测试集上，MWIR-Net-final_plain_multisplit 的结果分别为 Rain100H 25.05 dB PSNR、Test100 23.77 dB、Test1200 30.03 dB、Test2800 30.6"
+    },
+    {
+      "paragraph": 139,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表5-2 MWIR-Net多数据集去雨结果"
+    },
+    {
+      "paragraph": 140,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 数据集 | 图像数 | PSNR | SSIM | LPIPS | | --- | --- | --- | --- | --- | | Rain100L | 100 | 33.08 | 0.9442 | 0.087578 | | Rai"
+    },
+    {
+      "paragraph": 141,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-5 多数据集去雨结果对比](figures/figure-5-5-derain-multisplit.png)"
+    },
+    {
+      "paragraph": 142,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-5 多数据集去雨结果对比"
+    },
+    {
+      "paragraph": 143,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 5.2 去雾实验结果"
+    },
+    {
+      "paragraph": 144,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "SOTS outdoor 去雾结果显示，MWIR-Net-stage2_charb_edge002_tta_dehaze 在当前工作区中表现最好，PSNR 为 32.04 dB，SSIM 为 0.9804，LPIPS 为 0.009871。"
+    },
+    {
+      "paragraph": 145,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表5-3 SOTS outdoor去雾结果"
+    },
+    {
+      "paragraph": 146,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 模型 | 图像数 | PSNR | SSIM | LPIPS | | --- | --- | --- | --- | --- | | MWIR-Net-stage2_charb_edge002_tta_dehaze | 500 | 32"
+    },
+    {
+      "paragraph": 147,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-2 SOTS outdoor去雾视觉对比](figures/figure-5-2-haze-visual.png)"
+    },
+    {
+      "paragraph": 148,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-2 SOTS outdoor去雾视觉对比"
+    },
+    {
+      "paragraph": 149,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-4 SOTS outdoor主要方法PSNR对比](figures/figure-5-4-sots-psnr.png)"
+    },
+    {
+      "paragraph": 150,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-4 SOTS outdoor主要方法PSNR对比"
+    },
+    {
+      "paragraph": 151,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从视觉效果看，MWIR-Net 在 SOTS outdoor 上能够恢复较高对比度，颜色偏移较小，天空和建筑边缘保持较完整。CLAHE 只能增强局部对比度，容易带来颜色不自然和噪声放大。公开模型 PromptIR 在部分样本中颜色更稳定，但"
+    },
+    {
+      "paragraph": 152,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "SOTS outdoor 结果较好的一个原因是训练和测试退化分布相对接近。模型在该数据集上能较好恢复天空、道路和建筑的对比度，也能保持较低 LPIPS。nyuhaze500 的结果明显偏低，说明模型对室内深度、雾浓度和图像内容变化较敏感。去"
+    },
+    {
+      "paragraph": 153,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "去雾结果还说明 TTA 对模型稳定性有帮助。旋转和翻转不会改变雾退化本身，但会改变网络卷积和注意力对局部结构的响应方向。多路输出平均后，局部伪影和方向性偏差会被部分抵消。该策略适合离线论文实验和高质量图像处理场景，不适合实时系统直接使用。"
+    },
+    {
+      "paragraph": 154,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 5.3 消融实验分析"
+    },
+    {
+      "paragraph": 155,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "为了分析 prompt 分支和通道注意力的作用，本文采用公平消融设置。模型均从 MWIR-Net-5k_12epoch_init 的 epoch=11 权重初始化，在 Rain100L 去雨任务上使用相同训练数据、训练轮数、学习率和损失函数"
+    },
+    {
+      "paragraph": 156,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "表5-4 Rain100L公平消融结果"
+    },
+    {
+      "paragraph": 157,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 消融模式 | 图像数 | PSNR mean±std | SSIM mean±std | LPIPS mean±std | | --- | --- | --- | --- | --- | | zero_prompt | 100×3 | "
+    },
+    {
+      "paragraph": 158,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "![图5-6 Prompt分支消融结果](figures/figure-5-6-ablation.png)"
+    },
+    {
+      "paragraph": 159,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图5-6 Prompt分支消融结果"
+    },
+    {
+      "paragraph": 160,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "结果显示，no_channel_attention 的 PSNR 均值比 zero_prompt 高 0.0089 dB，SSIM 低 0.000008，LPIPS 低 0.000223。三项差异均小于对应标准差，不能说明通道注意力在当前协"
+    },
+    {
+      "paragraph": 161,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 5.4 结果讨论"
+    },
+    {
+      "paragraph": 162,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "MWIR-Net 的实验结果可以从三个方面理解。其一，二阶段微调对结果影响明显。联合训练阶段使模型具备同时处理去雨和去雾的基础能力，单任务微调进一步贴近目标数据分布。其二，TTA 对 SOTS outdoor 和 Rain100L 都有一定"
+    },
+    {
+      "paragraph": 163,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "与强公开预训练模型相比，MWIR-Net 在 Rain100L 上仍有差距。公开模型通常经过更大规模训练，并在结构、数据和训练策略上积累更多经验。本课题的贡献在于完成了面向雾雨联合复原的本地实现、训练协议、统一复算和消融分析。对于本科毕设而"
+    },
+    {
+      "paragraph": 164,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从结构角度看，MWIR-Net 的优势在于网络具备较清晰的可解释模块。多尺度编码解码负责恢复空间结构，Transformer 复原块负责特征交互，prompt 分支负责退化先验，边缘损失负责约束细节。实验结果没有证明每个模块都带来稳定收益，"
+    },
+    {
+      "paragraph": 165,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从论文实验角度看，本课题的结果边界也比较明确。SOTS outdoor 上 MWIR-Net 表现较好，Rain100L 上与公开强模型存在差距，GT-RAIN-test 上泛化能力不足。这样的结果虽然不如单纯宣称模型最优醒目，但更符合实际"
+    },
+    {
+      "paragraph": 166,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "若将 MWIR-Net 放到实际系统中使用，还需要考虑推理速度、显存占用和输入分辨率。当前实验以离线复原质量为主，TTA 自集成会把单张图像推理次数增加到 8 次，不适合直接部署在实时监控系统中。若应用场景要求实时处理，可以关闭 TTA，或"
+    },
+    {
+      "paragraph": 167,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "复原模型也不应孤立评价。雾雨图像经过复原后，人眼观感通常改善，但下游检测模型是否受益还需要单独验证。有些复原方法会增强边缘，却改变目标颜色或局部纹理，检测模型可能因此出现新的误差。后续研究可以把目标检测或语义分割作为外部评价任务，比较退化图"
+    },
+    {
+      "paragraph": 168,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 5.5 本章小结"
+    },
+    {
+      "paragraph": 169,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本章基于统一复算口径分析了 MWIR-Net 的去雨、去雾和消融结果。Rain100L 上，MWIR-Net TTA 版本达到 33.08 dB PSNR 和 0.9442 SSIM，但仍低于 Restormer 和 PromptIR 官方"
+    },
+    {
+      "paragraph": 170,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 第6章 结论与展望"
+    },
+    {
+      "paragraph": 171,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 6.1 研究总结"
+    },
+    {
+      "paragraph": 172,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本课题围绕雾雨退化场景下的图像复原问题，完成了 MWIR-Net 模型设计、代码实现、数据准备、训练推理和实验分析。论文从大气散射模型和雨纹退化特点出发，分析了去雾、去雨和统一图像复原的研究进展。在模型层面，MWIR-Net 采用多尺度 T"
+    },
+    {
+      "paragraph": 173,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "实验结果表明，MWIR-Net 可以同时覆盖去雨和去雾任务。Rain100L 去雨 TTA 版本达到 33.08 dB PSNR，SOTS outdoor 去雾 TTA 版本达到 32.04 dB PSNR。多数据集测试显示，模型在合成去雨"
+    },
+    {
+      "paragraph": 174,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 6.2 不足之处"
+    },
+    {
+      "paragraph": 175,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "本课题仍存在不足。训练规模有限，无法完全复现公开预训练模型的大规模训练条件。去雨和去雾数据分布差异较大，当前 prompt 分支对退化类型的区分能力仍不充分。GT-RAIN-test 上的指标较低，说明模型对真实雨场景的泛化能力不足。实验主"
+    },
+    {
+      "paragraph": 176,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "论文工作也受到硬件时间和数据整理成本限制。多 seed 完整 full 模型训练没有完全展开，现有消融主要比较 zero_prompt 和 no_channel_attention 两种设置。由于 full 版本三 seed 长训练结果缺失"
+    },
+    {
+      "paragraph": 177,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "模型结构也有改进空间。当前 prompt 参数库为固定长度，prompt 权重由全局平均特征生成，对局部混合退化的表达能力有限。通道注意力消融结果没有呈现稳定收益，说明该模块需要重新设计或在更长训练协议下验证。TTA 虽能提高部分指标，但推"
+    },
+    {
+      "paragraph": 178,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "### 6.3 工作展望"
+    },
+    {
+      "paragraph": 179,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "后续工作可以从数据、模型和应用三个方向展开。数据方面，可增加真实雾雨图像和夜间雨雾图像，构建更接近工程场景的训练集。模型方面，可将 prompt 设计为局部自适应形式，使不同区域根据退化强度选择不同先验；也可引入退化分类辅助分支，帮助网络区"
+    },
+    {
+      "paragraph": 180,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 参考文献"
+    },
+    {
+      "paragraph": 181,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[1] KOSCHMIEDER H. Theorie der horizontalen Sichtweite[J]. Beitrage zur Physik der freien Atmosphare, 1924, 12: 33-55."
+    },
+    {
+      "paragraph": 182,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[2] MCCARTNEY E J. Optics of the Atmosphere: Scattering by Molecules and Particles[M]. New York: John Wiley and Sons, 19"
+    },
+    {
+      "paragraph": 183,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[3] HE K M, SUN J, TANG X O. Single image haze removal using dark channel prior[J]. IEEE Transactions on Pattern Analysi"
+    },
+    {
+      "paragraph": 184,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[4] CAI B L, XU X M, JIA K, et al. DehazeNet: An end-to-end system for single image haze removal[J]. IEEE Transactions o"
+    },
+    {
+      "paragraph": 185,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[5] REN W Q, LIU S, ZHANG H, et al. Single image dehazing via multi-scale convolutional neural networks[C]//European Con"
+    },
+    {
+      "paragraph": 186,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[6] LI B Y, PENG X L, WANG Z Y, et al. AOD-Net: All-in-one dehazing network[C]//Proceedings of the IEEE International Co"
+    },
+    {
+      "paragraph": 187,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[7] LI B Y, REN W Q, FU D P, et al. Benchmarking single-image dehazing and beyond[J]. IEEE Transactions on Image Process"
+    },
+    {
+      "paragraph": 188,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[8] FU X Y, HUANG J, DING X H, et al. Clearing the skies: A deep network architecture for single-image rain removal[J]. "
+    },
+    {
+      "paragraph": 189,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[9] ZHANG H, PATEL V M. Density-aware single image de-raining using a multi-stream dense network[C]//Proceedings of the "
+    },
+    {
+      "paragraph": 190,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[10] WANG T, YANG X, XU K, et al. Spatial attentive single-image deraining with a high quality real rain dataset[C]//Pro"
+    },
+    {
+      "paragraph": 191,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[11] REN D W, ZUO W M, HU Q H, et al. Progressive image deraining networks: A better and simpler baseline[C]//Proceeding"
+    },
+    {
+      "paragraph": 192,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[12] ZAMIR S W, ARORA A, KHAN S, et al. Learning enriched features for real image restoration[C]//European Conference on"
+    },
+    {
+      "paragraph": 193,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[13] ZAMIR S W, ARORA A, KHAN S, et al. Multi-stage progressive image restoration[C]//Proceedings of the IEEE/CVF Confer"
+    },
+    {
+      "paragraph": 194,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[14] ZAMIR S W, ARORA A, KHAN S, et al. Restormer: Efficient transformer for high-resolution image restoration[C]//Proce"
+    },
+    {
+      "paragraph": 195,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[15] LI B, LIU X, HU P, et al. All-in-one image restoration for unknown corruption[C]//Proceedings of the IEEE/CVF Confe"
+    },
+    {
+      "paragraph": 196,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[16] VALANARASU J M J, YASAR E, PATEL V M. TransWeather: Transformer-based restoration of images degraded by adverse wea"
+    },
+    {
+      "paragraph": 197,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[17] POTLAPALLI V, ZAMIR S W, KHAN S, et al. PromptIR: Prompting for all-in-one image restoration[C]//Advances in Neural"
+    },
+    {
+      "paragraph": 198,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[18] WANG Z, CUN X D, BAO J M, et al. Uformer: A general U-shaped transformer for image restoration[C]//Proceedings of t"
+    },
+    {
+      "paragraph": 199,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[19] TU Z, TALAMADUPULA K, KUMAR A, et al. MAXIM: Multi-axis MLP for image processing[C]//Proceedings of the IEEE/CVF Co"
+    },
+    {
+      "paragraph": 200,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[20] LIANG J Y, CAO J Z, SUN G L, et al. SwinIR: Image restoration using Swin Transformer[C]//Proceedings of the IEEE/CV"
+    },
+    {
+      "paragraph": 201,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[21] WANG Z, BOVIK A C, SHEIKH H R, et al. Image quality assessment: From error visibility to structural similarity[J]. "
+    },
+    {
+      "paragraph": 202,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[22] ZHANG R, ISOLA P, EFROS A A, et al. The unreasonable effectiveness of deep features as a perceptual metric[C]//Proc"
+    },
+    {
+      "paragraph": 203,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[23] LOSHCHILOV I, HUTTER F. Decoupled weight decay regularization[C]//International Conference on Learning Representati"
+    },
+    {
+      "paragraph": 204,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "[24] CHARBONNIER P, BLANC-FERAUD L, AUBERT G, et al. Two deterministic half-quadratic regularization algorithms for comp"
+    },
+    {
+      "paragraph": 205,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 附录A 主要运行命令"
+    },
+    {
+      "paragraph": 206,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "数据准备使用 python tools/prepare_mwir_data.py --dehaze-source ots。联合训练使用 train.py，主要参数包括 --de_type derain dehaze、--epochs 12、"
+    },
+    {
+      "paragraph": 207,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "## 致 谢"
+    },
+    {
+      "paragraph": 208,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本论文的完成离不开指导教师在选题、实验方案和论文写作方面的帮助。老师在模型设计、实验口径和结果分析上给予了耐心指导，使课题能够从想法逐步落实到代码和实验。感谢同学们在数据整理、环境调试和论文排版过程中提供的帮助，也感谢开源社区提供的深度学习"
+    }
+  ]
+}
