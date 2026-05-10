@@ -49,6 +49,10 @@ lightning_logs/
 runs/
 *.log
 
+# Keep the thesis sample pack outputs trackable.
+!visual_comparisons/thesis_sample_pack/**/outputs/
+!visual_comparisons/thesis_sample_pack/**/outputs/**
+
 # Large local archives, usually dataset packages
 *.zip
 *.zip.*
